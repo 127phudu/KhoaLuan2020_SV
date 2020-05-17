@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Đăng ký thi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
+    <link rel="stylesheet" href="../Content/CSS/View/StudentRegister.css">
+</head>
+
+<body>
+    <div class="container-wrapp">
+        <!-- Header page -->
+        <div class="header-page">
+            <div class="header-left flex">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <span class="title-header">HỆ THỐNG ĐĂNG KÝ THI - ĐHQG HÀ NỘI</span>
+            </div>
+            <div class="header-right flex">
+                <div class="fullName-user">Nguyễn Văn Tùng</div>
+                <div class="avatar-user">
+                    <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="logout">
+                    Đăng xuất
+                </div>
+            </div>
+        </div>
+        <div class="body-page flex">
+            <!-- Menu left -->
+            <div class="body-left menu-studentRegister">
+                <ul>
+                    <li class="flex item-1">
+                        <a href="#">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+                    <li class="flex item-2">
+                        <a href="#">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            <span>Đăng ký thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3">
+                        <a href="#">
+                            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                            <span>Kết quả đăng ký</span>
+                        </a>
+                    </li>
+                    <li class="flex item-4" id="menuChangePassword">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+                            <span>Đổi mật khẩu</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-right flex1 main-content">
+
+                <!-- Nội dung thay thế từng trang -->
+                <div class="container-fluid" id="SubjectContainer">
+                    <div class="row breadrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Đăng ký thi</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="row header-title">
+                        <span>DANH SÁCH CÁC LỊCH THI</span>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row header-title">
+                        <span>CÁC LỊCH THI ĐÃ CHỌN</span>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Form đổi mật khẩu -->
+    <div class="wrapper-form formChanePassword">
+        <div class="formDialog" id="formChangePassword">
+            <!-- Header form -->
+            <div class="header-form">
+                ĐỔI MẬT KHẨU
+            </div>
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="CurrentPassword" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Mật khẩu mới <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="NewPassword" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu mới...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="ConfirmPassWord" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo cất thành công -->
+    <div class="alert alert-success" id="success-alert">
+        <strong>Cất dữ liệu thành công! </strong>
+    </div>
+
+    <!-- Script library -->
+    <script src="../Script/Library/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../Script/Library/jquery-ui.min.js"></script>
+
+    <!-- Script common -->
+    <script src="../Script/Common/Data.js"></script>
+    <script src="../Script/Common/MappingApi.js"></script>
+    <script src="../Script/Common/Common.js"></script>
+    <script src="../Script/Common/Master.js"></script>
+    <script src="../Script/Base/Grid.js"></script>
+    <script src="../Script/Base/BaseForm.js"></script>
+
+    <!-- Script từng page -->
+    <script src="../Script/Form/ChangePasswordForm.js"></script>
+    <script src="../Script/View/StudentRegister.js"></script>
+</body>
+
+</html>
