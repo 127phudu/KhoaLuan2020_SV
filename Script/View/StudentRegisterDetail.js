@@ -1,5 +1,5 @@
 // Trang đăng ký thi
-class StudentRegister extends Grid {
+class StudentRegisterDetail extends Grid {
 
     // Hàm khởi tạo grid
     constructor(gridId) {
@@ -17,14 +17,15 @@ class StudentRegister extends Grid {
         //         }
         //     });
         // }
-        me.loadData(createExams);
+        
+        me.loadData(createExams2);
     }
 
     // Thiết lập các config
     getConfig() {
         let object = {
             role: "Student",
-            entityName: "studentRegisters",
+            entityName: "studentRegisterDetails",
             formTitle:"Danh sách học phần"
         };
 
@@ -33,12 +34,9 @@ class StudentRegister extends Grid {
 }
 
     // Khởi tạo trang quản lý Học phần
-var studentRegister = new StudentRegister("#GridStudentRegister");
-    studentRegister.loadAjaxData();
+var studentRegisterDetail = new StudentRegisterDetail("#GridStudentRegisterDetail");
+    studentRegisterDetail.loadAjaxData();
 
-
-    // Khởi tạo form thay đổi mật khẩu
-var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
 
 
 

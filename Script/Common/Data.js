@@ -46,3 +46,152 @@ var students = [
         Course: "K61"
     }
 ];
+
+// Các lịch thi
+var createExams = [
+    {
+        Id: 1,
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3304",
+        NumberCredit: 3,
+        Place: "Đại học ngoại ngữ",
+        NumberStudent: 23,
+        DateExam: "22/02/2020 01:40",
+        TimeExam: "3:30-5:00"
+    },
+    {
+        Id: 2,
+        SubjectName: "Đại số",
+        SubjectCode: "INT33045",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 21,
+        DateExam: "10/02/2020 01:40",
+        TimeExam: "13:30-14:00"
+    },
+    {
+        Id: 3,
+        SubjectName: "Đường lối cách mạng của ĐCS",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 25,
+        DateExam: "04/02/2020 01:40",
+        TimeExam: "14:00-15:00"
+    },
+    {
+        Id: 4,
+        SubjectName: "Cơ sở dữ liệu",
+        SubjectCode: "INT3302",
+        NumberCredit: 3,
+        Place: "Kí túc xá",
+        NumberStudent: 22,
+        DateExam: "24/06/2020 01:40",
+        TimeExam: "13:30-15:00"
+    },
+    {
+        Id: 1,
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3304",
+        NumberCredit: 3,
+        Place: "Đại học ngoại ngữ",
+        NumberStudent: 23,
+        DateExam: "22/02/2020 01:40",
+        TimeExam: "3:30-5:00"
+    },
+    {
+        Id: 1,
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3304",
+        NumberCredit: 3,
+        Place: "Đại học ngoại ngữ",
+        NumberStudent: 23,
+        DateExam: "22/02/2020 01:40",
+        TimeExam: "3:30-5:00"
+    },
+    {
+        Id: 4,
+        SubjectName: "Cơ sở dữ liệu",
+        SubjectCode: "INT3302",
+        NumberCredit: 3,
+        Place: "Kí túc xá",
+        NumberStudent: 22,
+        DateExam: "24/06/2020 01:40",
+        TimeExam: "13:30-15:00"
+    },
+    {
+        Id: 1,
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3304",
+        NumberCredit: 3,
+        Place: "Đại học ngoại ngữ",
+        NumberStudent: 23,
+        DateExam: "22/02/2020 01:40",
+        TimeExam: "3:30-5:00"
+    },
+    {
+        Id: 2,
+        SubjectName: "Đại số",
+        SubjectCode: "INT33045",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 21,
+        DateExam: "10/02/2020 01:40",
+        TimeExam: "13:30-14:00"
+    },
+    {
+        Id: 3,
+        SubjectName: "Đường lối cách mạng của ĐCS",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 25,
+        DateExam: "04/02/2020 01:40",
+        TimeExam: "14:00-15:00"
+    }
+];
+
+
+// Các lịch thi
+var createExams2 = [
+    {
+        Id: 1,
+        SubjectName: "Giải tích 1",
+        SubjectCode: "INT3304",
+        NumberCredit: 3,
+        Place: "Đại học ngoại ngữ",
+        NumberStudent: 23,
+        DateExam: "22/02/2020 01:40",
+        TimeExam: "3:30-5:00"
+    },
+    {
+        Id: 2,
+        SubjectName: "Đại số",
+        SubjectCode: "INT33045",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 21,
+        DateExam: "10/02/2020 01:40",
+        TimeExam: "13:30-14:00"
+    },
+    {
+        Id: 3,
+        SubjectName: "Đường lối cách mạng của ĐCS",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 25,
+        DateExam: "04/02/2020 01:40",
+        TimeExam: "14:00-15:00"
+    },
+    {
+        Id: 3,
+        SubjectName: "Đường lối cách mạng của ĐCS",
+        SubjectCode: "INT3305",
+        NumberCredit: 3,
+        Place: "",
+        NumberStudent: 25,
+        DateExam: "04/02/2020 01:40",
+        TimeExam: "14:00-15:00"
+    }
+];

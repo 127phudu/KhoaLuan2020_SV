@@ -1,5 +1,17 @@
 *{}
 
+span#saveRegister {
+    color: black;
+    border: 1px solid #2759a7;
+    padding: 5px 8px;
+    border-radius: 3px;
+    background: #3276c3;
+    font-weight: 500;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+}
+
 .body-left.menu-studentRegister li {
     height: 50px;
     line-height: 28px;
@@ -32,3 +44,35 @@
     margin-right: 14px;
 }
 
+.grid-master{
+    height: 50%;
+    margin-bottom: 5px;
+}
+
+.grid-detail{
+    height: calc(50% - 164px);
+}
+
+.grid-wrapper {
+    border: 1px solid #9d9b9b;
+}
+
+.table-responsive .table > thead > tr > th {
+    color: #454444;
+}
+
+.table-responsive .thead-custom {
+    background: #dedede;
+}
+
+.header-title {
+    font-weight: bold;
+}
+
+.row.header-title .float-left {
+    margin-top: 10px;
+}
+
+span.glyphicon.glyphicon-trash {
+    color: #e73030;
+}

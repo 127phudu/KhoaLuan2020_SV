@@ -6,7 +6,10 @@ class Grid{
         this.columns = this.grid.find(".column");
         this.useCheckBox = this.grid.attr("useCheckBox");
         this.useIndex = this.grid.attr("useIndex");
+        this.useDelete = this.grid.attr("useDelete");
+
         this.render();
+        this. initEvent();
     }
 
     // Hàm dùng để render ra table
@@ -35,13 +38,17 @@ class Grid{
         });
 
         // Kiểm tra xem có dùng cột số thứ tự không
-        if(this.useIndex == "true"){
+        if(this.useIndex){
             row.prepend("<th class='text-align-right'>STT</th>");
         }
 
         // Kiểm tra xem có dùng checkbox không
-        if(this.useCheckBox == "true"){
+        if(this.useCheckBox){
             row.prepend("<th></th>");
+        }
+        // Kiểm tra xem có dùng icon xóa không
+        if(this.useDelete){
+            row.append("<th></th>");
         }
 
         header.append(row);
@@ -63,8 +70,6 @@ class Grid{
             this.grid.find(".table").append(body);
             // Đánh lại số thứ tự
             this.setIndex();
-            // Chọn bản ghi đầu tiên
-            this.setSelectedFirstRow();
         }
         this.loadDataComplete();
     }
@@ -93,6 +98,10 @@ class Grid{
         if(this.useCheckBox){
             row.prepend("<td><span class='checkbox unchecked'></span></td>");
         }
+        // Kiểm tra xem có dùng icon xóa không
+        if(this.useDelete){
+            row.append("<td title='Xóa'><span class='glyphicon glyphicon-trash'></span></td>");
+        }
         // Set giá trị cho từng row
         row.data("value",data);
 
@@ -113,14 +122,6 @@ class Grid{
         }
 
         return value;
-    }
-    
-    // Hàm chọn bản ghi đầu tiên
-    setSelectedFirstRow(){
-        this.grid.find(".row-focus").removeClass("row-focus");
-        this.grid.find("tbody tr:first").addClass("row-focus");
-        this.grid.find(".checkbox").attr("class","checkbox unchecked");
-        this.grid.find("td .checkbox:first").attr("class","checkbox checked");
     }
     
     // Hàm dùng để đánh số thứ tự
@@ -172,7 +173,7 @@ class Grid{
     // Khởi tạo các sự kiện
     initEvent(){
         let me = this;
-
+       
         // Sự kiện khi click vào check box ở body
         me.grid.on("click","td .checkbox",function(){
             let className = $(this).attr("class");

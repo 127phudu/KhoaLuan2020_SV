@@ -74,18 +74,22 @@
                         </nav>
                     </div>
                     <div class="row header-title">
-                        <span>DANH SÁCH CÁC LỊCH THI</span>
+                        <span class="float-left">DANH SÁCH CÁC LỊCH THI</span>
+                        <span class="float-right" id="saveRegister"><span class="glyphicon glyphicon-save"></span> Lưu kết quả</span>
                     </div>
 
                     <!-- Grid  -->
-                    <div class="grid-wrapper">
+                    <div class="grid-wrapper grid-master">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                <div class="Grid" id="GridStudentRegister" useCheckBox='true' >
                                     <div class="column" setField="SubjectName">Tên học phần</div>
-                                    <div class="column" setField="SubjectCode">Mã học phần</div>
-                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
-                                    <div class="column" setField="Description">Mô tả</div>
+                                    <div class="column" setField="SubjectCode">Mã HP</div>
+                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="Place">Khu vực</div>
+                                    <div class="column" setField="NumberStudent" dataType="Number">Số SV</div>
+                                    <div class="column" setField="DateExam" dataType="DateTime">Ngày thi</div>
+                                    <div class="column" setField="TimeExam">Giờ thi</div>
                                 </div>
                             </div>
                         </div>
@@ -96,14 +100,17 @@
                     </div>
 
                     <!-- Grid  -->
-                    <div class="grid-wrapper">
+                    <div class="grid-wrapper grid-detail">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                <div class="Grid" id="GridStudentRegisterDetail" useIndex="true" useDelete="true">
                                     <div class="column" setField="SubjectName">Tên học phần</div>
-                                    <div class="column" setField="SubjectCode">Mã học phần</div>
-                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
-                                    <div class="column" setField="Description">Mô tả</div>
+                                    <div class="column" setField="SubjectCode">Mã HP</div>
+                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="Place">Khu vực</div>
+                                    <div class="column" setField="NumberStudent" dataType="Number">Số SV</div>
+                                    <div class="column" setField="DateExam" dataType="DateTime">Ngày thi</div>
+                                    <div class="column" setField="TimeExam">Giờ thi</div>
                                 </div>
                             </div>
                         </div>
@@ -184,6 +191,7 @@
     <!-- Script từng page -->
     <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/View/StudentRegister.js"></script>
+    <script src="../Script/View/StudentRegisterDetail.js"></script>
 </body>
 
 </html>
