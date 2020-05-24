@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Đăng ký thi</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -35,13 +35,13 @@
             <!-- Menu left -->
             <div class="body-left menu-studentRegister">
                 <ul>
-                    <li class="flex item-1 menu-item" key="Home">
+                    <li class="flex item-1 menu-item menu-hover" key="Home">
                         <a href="#">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             <span>Trang chủ</span>
                         </a>
                     </li>
-                    <li class="flex item-2 menu-item menu-hover" key="StudentRegister">
+                    <li class="flex item-2 menu-item" key="StudentRegister">
                         <a href="#">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             <span>Đăng ký thi</span>
@@ -69,51 +69,11 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Đăng ký thi</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="row header-title">
-                        <span class="float-left">DANH SÁCH CÁC LỊCH THI</span>
-                        <span class="float-right" id="saveRegister"><span class="glyphicon glyphicon-save"></span> Lưu kết quả</span>
-                    </div>
-
-                    <!-- Grid  -->
-                    <div class="grid-wrapper grid-master">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="Grid" id="GridStudentRegister" useCheckBox='true' >
-                                    <div class="column" setField="SubjectName">Tên học phần</div>
-                                    <div class="column" setField="SubjectCode">Mã HP</div>
-                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
-                                    <div class="column" setField="Place">Khu vực</div>
-                                    <div class="column" setField="NumberStudent" dataType="Number">Số SV</div>
-                                    <div class="column" setField="DateExam" dataType="DateTime">Ngày thi</div>
-                                    <div class="column" setField="TimeExam">Giờ thi</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row header-title">
-                        <span>CÁC LỊCH THI ĐÃ CHỌN</span>
-                    </div>
-
-                    <!-- Grid  -->
-                    <div class="grid-wrapper grid-detail">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="Grid" id="GridStudentRegisterDetail" useIndex="true" useDelete="true">
-                                    <div class="column" setField="SubjectName">Tên học phần</div>
-                                    <div class="column" setField="SubjectCode">Mã HP</div>
-                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
-                                    <div class="column" setField="Place">Khu vực</div>
-                                    <div class="column" setField="NumberStudent" dataType="Number">Số SV</div>
-                                    <div class="column" setField="DateExam" dataType="DateTime">Ngày thi</div>
-                                    <div class="column" setField="TimeExam">Giờ thi</div>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="float-left">CÁC THÔNG BÁO:</span>
                     </div>
                 </div>
                 <!-- end content -->
@@ -184,14 +144,11 @@
     <script src="../Script/Common/Data.js"></script>
     <script src="../Script/Common/MappingApi.js"></script>
     <script src="../Script/Common/Common.js"></script>
-    <script src="../Script/Base/Grid.js"></script>
     <script src="../Script/Base/BaseForm.js"></script>
 
     <!-- Script từng page -->
     <script src="../Script/Form/ChangePasswordForm.js"></script>
     <script src="../Script/Common/Master.js"></script>
-    <script src="../Script/View/StudentRegister.js"></script>
-    <script src="../Script/View/StudentRegisterDetail.js"></script>
+    <script src="../Script/View/Home.js"></script>
 </body>
-
 </html>

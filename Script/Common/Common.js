@@ -105,15 +105,12 @@ var Constant = Constant || {};
 
 // Các url để chuyển hướng
 Constant.url = {
-    Login: "file:///D:/KhoaLuan2020/Index.html",
+    Login: "file:///D:/KhoaLuan2020_SV/Index.html",
 
-    StudentManager: "file:///D:/KhoaLuan2020/View/StudentManager.html",
-    SubjectManager: "file:///D:/KhoaLuan2020/View/SubjectManager.html",
-    RoomManager:"file:///D:/KhoaLuan2020/View/RoomManager.html",
+    StudentRegister: "file:///D:/KhoaLuan2020_SV/View/StudentRegister.html",
+    RegisterResult: "file:///D:/KhoaLuan2020_SV/View/RegisterResult.html",
+    Home: "file:///D:/KhoaLuan2020_SV/View/Home.html"
 }
-
-// pagin phân trang
-Constant.urlPaging = "?Size={0}&Page={1}";
 
 ///////////////////////// Các Enum //////////////////////////////////
 var Enum = Enum || {};

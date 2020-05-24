@@ -24,7 +24,7 @@ class Layout{
         $(".logout").click(this.logout.bind(this));
 
         // Khi bấm vào menu
-        $(".submenu-item").click(this.redirecPage);
+        $(".menu-item").click(this.redirecPage);
 
         // Khi bấm vào đổi mật khẩu
         $("#menuChangePassword").click(this.changePassword);
@@ -61,4 +61,8 @@ class Layout{
 
 // Khởi tạo một trang layout
 var layout = new Layout();
+// Danh sách dữ liệu cache
+var cacheData = {};
 
+// Khởi tạo form thay đổi mật khẩu
+var changePasswordForm = new ChangePasswordForm("#formChangePassword", 500, 233);

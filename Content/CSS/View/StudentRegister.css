@@ -76,3 +76,7 @@ span#saveRegister {
 span.glyphicon.glyphicon-trash {
     color: #e73030;
 }
+
+.menu-hover{
+    background: #5d91cb;
+}

@@ -37,8 +37,6 @@ var studentRegister = new StudentRegister("#GridStudentRegister");
     studentRegister.loadAjaxData();
 
 
-    // Khởi tạo form thay đổi mật khẩu
-var changePasswordForm = new ChangePasswordForm(null, "#formChangePassword", 500, 233, null);
 
 
 
