@@ -186,6 +186,11 @@ class Grid{
                 $(this).parents("tr").removeClass("row-focus");
             }
         });
+
+        // Sự kiện khi click vào icon xóa
+        me.grid.on("click","td .glyphicon-trash",function(){
+            $(this).parents("tr").remove();
+        });
     }
 
     // Hàm chạy khi load data xong

@@ -4,6 +4,9 @@ class StudentRegister extends Grid {
     // Hàm khởi tạo grid
     constructor(gridId) {
         super(gridId);
+
+        this.originData = null;
+        this.cacheData = null;
     }
 
     //Hàm load dữ liệu
@@ -24,8 +27,7 @@ class StudentRegister extends Grid {
     getConfig() {
         let object = {
             role: "Student",
-            entityName: "studentRegisters",
-            formTitle:"Danh sách học phần"
+            entityName: "studentRegisters"
         };
 
         return object;
