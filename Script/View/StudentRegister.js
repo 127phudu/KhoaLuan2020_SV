@@ -11,25 +11,25 @@ class StudentRegister extends Grid {
 
     //Hàm load dữ liệu
     loadAjaxData(){
-        let me = this;
-
-        if(me.Students.urlGetData && periodExamId){
-            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.Students.urlGetData.format(1),
+            urlFull = url + Constant.urlPaging.format(1000, 1);
+debugger
+        if(url && semesterId){
+            CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    debugger
-                    me.loadData(response.Data);
+                    me.loadData(response.data["Exams"]);
                 }
             });
         }
-
-        me.loadData(createExams);
     }
 
     // Thiết lập các config
     getConfig() {
         let object = {
             role: "Student",
-            entityName: "studentRegisters"
+            entityName: "Exams"
         };
 
         return object;
@@ -38,7 +38,6 @@ class StudentRegister extends Grid {
 
     // Khởi tạo trang quản lý Học phần
 var studentRegister = new StudentRegister("#GridStudentRegister");
-    studentRegister.loadAjaxData();
 
 
 

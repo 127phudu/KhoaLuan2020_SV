@@ -6,10 +6,10 @@ var mappingApi = {
         urlChangePassword: "",
     },
     Students:{ // Sinh viên
-        urlGetData: "http://dkt.vnu.edu.vn:8080/admin/student/all", 
-        urlCreate: "http://dkt.vnu.edu.vn:8080/admin/student",      
-        urlUpdate: "http://dkt.vnu.edu.vn:8080/admin/student",      
-        urlDelete: "http://dkt.vnu.edu.vn:8080/admin/student/list", 
+        urlGetData: "http://dkt.vnu.edu.vn:8080/student/exam/all/semester/{0}", 
+        urlGetDataResult: "http://dkt.vnu.edu.vn:8080/student/student_subject_exam/registered/semester/{0}",      
+        urlUpdate: "http://dkt.vnu.edu.vn:8080/student/",      
+        urlDelete: "http://dkt.vnu.edu.vn:8080/student//list", 
         urlCheckDuplicate: ""
     }
 }

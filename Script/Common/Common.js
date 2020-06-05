@@ -112,6 +112,9 @@ Constant.url = {
     Home: "file:///D:/KhoaLuan2020_SV/View/Home.html"
 }
 
+// pagin phân trang
+Constant.urlPaging = "?Size={0}&Page={1}";
+
 ///////////////////////// Các Enum //////////////////////////////////
 var Enum = Enum || {};
 

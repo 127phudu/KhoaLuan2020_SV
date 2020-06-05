@@ -8,20 +8,22 @@ class StudentRegisterDetail extends Grid {
         this.originData = null;
         this.cacheData = null;
     }
-
+   
     //Hàm load dữ liệu
     loadAjaxData(){
-        let me = this;
-
-        // if(me.config.configUrl.urlGetData && periodExamId){
-        //     CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
-        //         if(response.status == Enum.StatusResponse.Success){
-        //             me.loadData(response.Data);
-        //         }
-        //     });
-        // }
-        
-        me.loadData(createExams2);
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.Students.urlGetDataResult.format(1),
+            urlFull = url + Constant.urlPaging.format(1000, 1);
+debugger
+        if(url && semesterId){
+            CommonFn.GetAjax(urlFull, function (response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.loadData(response.data["RegisterResults"]);
+                    studentRegister.loadAjaxData();
+                }
+            });
+        }
     }
 
     // Thiết lập các config
