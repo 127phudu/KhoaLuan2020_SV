@@ -96,7 +96,16 @@ class Grid{
         }
         // Kiểm tra xem có dùng checkbox không
         if(this.useCheckBox){
-            row.prepend("<td><span class='checkbox unchecked'></span></td>");
+            if(data.Checked){
+                row.prepend("<td><span class='checkbox checked'></span></td>");
+                row.addClass("row-focus");
+            }else{
+                row.prepend("<td><span class='checkbox unchecked'></span></td>");
+            }
+        }
+        // Nếu không được phép sửa
+        if(data.Disable){
+            row.addClass("rowNotEdit");
         }
         // Kiểm tra xem có dùng icon xóa không
         if(this.useDelete){
@@ -181,9 +190,8 @@ class Grid{
             if(className.indexOf("unchecked") != -1){
                 $(this).attr("class","checkbox checked");
                 $(this).parents("tr").addClass("row-focus");
-            }else{
-                $(this).attr("class","checkbox unchecked");
-                $(this).parents("tr").removeClass("row-focus");
+                let dataRow = $(this).parents("tr").data("value");
+                me.submitRow(dataRow);
             }
         });
 
@@ -195,4 +203,7 @@ class Grid{
 
     // Hàm chạy khi load data xong
     loadDataComplete(){}
+
+    // Hàm xử lý khi chọn lịch thi
+    submitRow(dataRow){}
 }

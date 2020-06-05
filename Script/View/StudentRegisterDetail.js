@@ -15,22 +15,38 @@ class StudentRegisterDetail extends Grid {
             semesterId = parseInt(localStorage.getItem("SemesterId")),
             url = mappingApi.Students.urlGetDataResult.format(1),
             urlFull = url + Constant.urlPaging.format(1000, 1);
-debugger
+
         if(url && semesterId){
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
-                    me.loadData(response.data["RegisterResults"]);
+                    let data  = me.customData(response.data["RegisterResults"]);
+                    
+                    me.originData = JSON.parse(JSON.stringify(data));
+                    me.cacheData = JSON.parse(JSON.stringify(data));
+                    me.loadData(me.cacheData);
                     studentRegister.loadAjaxData();
                 }
             });
         }
+    }
+    
+    // Custom dữ liệu trước khi binding
+    customData(data){
+        let me = this;
+
+        data = data.filter(function(item, index){
+            item.TimeExam = item.StartTime.substr(11,5) + '-' + item.EndTime.substr(11,5);
+            return item;
+        });
+
+        return data;
     }
 
     // Thiết lập các config
     getConfig() {
         let object = {
             role: "Student",
-            entityName: "studentRegisterDetails"
+            entityName: "RegisterResults"
         };
 
         return object;

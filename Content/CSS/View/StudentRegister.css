@@ -80,3 +80,8 @@ span.glyphicon.glyphicon-trash {
 .menu-hover{
     background: #5d91cb;
 }
+
+.rowNotEdit {
+    background: #aae8f0 !important;
+    pointer-events: none;
+}

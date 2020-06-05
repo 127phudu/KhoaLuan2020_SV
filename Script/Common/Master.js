@@ -5,6 +5,7 @@ class Layout{
         this.initEvent();
         this.bindingFullName();
         this.checkRoleUser();
+        this.getSemesterId();
     }
 
     // Hiển thị tên người dùng đăng nhập
@@ -66,6 +67,13 @@ class Layout{
         if(role != "Student"){
             window.location.replace(Constant.url["Login"]);
         }
+    }
+
+    // Lấy ID của kì thi sinh viên đang thuộc
+    getSemesterId(){
+        let me = this;
+
+        
     }
 }
 
