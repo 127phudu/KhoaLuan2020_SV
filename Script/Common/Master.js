@@ -4,6 +4,7 @@ class Layout{
         // Khởi tạo các sự kiện
         this.initEvent();
         this.bindingFullName();
+        this.checkRoleUser();
     }
 
     // Hiển thị tên người dùng đăng nhập
@@ -56,6 +57,15 @@ class Layout{
     // Hiển thị và thu gọn menubar
     showMenuBar(){
         $(".body-left").toggleClass("display-none");
+    }
+
+    // Kiểm tra quyền truy cập
+    checkRoleUser(){
+        let role = localStorage.getItem("Role");
+
+        if(role != "Student"){
+            window.location.replace(Constant.url["Login"]);
+        }
     }
 }
 

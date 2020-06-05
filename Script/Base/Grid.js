@@ -1,6 +1,6 @@
 // Lớp dùng để render ra các table
 class Grid{
-    // Hàm khởi tạo, lúc đầu tuyền id grid và id container
+    // Hàm khởi tạo, lúc đầu tuyền id grid
     constructor(gridId){
         this.grid = $(gridId);
         this.columns = this.grid.find(".column");

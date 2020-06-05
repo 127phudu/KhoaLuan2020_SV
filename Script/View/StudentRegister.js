@@ -13,13 +13,15 @@ class StudentRegister extends Grid {
     loadAjaxData(){
         let me = this;
 
-        // if(me.config.configUrl.urlGetData && periodExamId){
-        //     CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
-        //         if(response.status == Enum.StatusResponse.Success){
-        //             me.loadData(response.Data);
-        //         }
-        //     });
-        // }
+        if(me.Students.urlGetData && periodExamId){
+            CommonFn.PostPutAjax("POST", me.config.configUrl.urlGetData, periodExamId, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    debugger
+                    me.loadData(response.Data);
+                }
+            });
+        }
+
         me.loadData(createExams);
     }
 

@@ -2,14 +2,14 @@
 
 var mappingApi = {
     Master:{
-        urlLogin: "http://admin.dkt.vnu.edu.vn:8881/admin/auth/login",    
+        urlLogin: "http://dkt.vnu.edu.vn:8080/api/auth/login",    
         urlChangePassword: "",
     },
     Students:{ // Sinh viên
-        urlGetData: "http://admin.dkt.vnu.edu.vn:8881/admin/student/all", 
-        urlCreate: "http://admin.dkt.vnu.edu.vn:8881/admin/student",      
-        urlUpdate: "http://admin.dkt.vnu.edu.vn:8881/admin/student",      
-        urlDelete: "http://admin.dkt.vnu.edu.vn:8881/admin/student/list", 
+        urlGetData: "http://dkt.vnu.edu.vn:8080/admin/student/all", 
+        urlCreate: "http://dkt.vnu.edu.vn:8080/admin/student",      
+        urlUpdate: "http://dkt.vnu.edu.vn:8080/admin/student",      
+        urlDelete: "http://dkt.vnu.edu.vn:8080/admin/student/list", 
         urlCheckDuplicate: ""
     }
 }

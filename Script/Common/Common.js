@@ -26,7 +26,7 @@ var CommonFn = CommonFn || {};
 
 // Hàm dùng login
 CommonFn.LoginAjax = function(param, fnCallBack){
-    let url = host + mappingApi.Master.urlLogin;
+    let url = mappingApi.Master.urlLogin;
 
     $.ajax({
         url: url,
@@ -71,7 +71,7 @@ CommonFn.GetAjax = function(url, fnCallBack){
     }
 }
 
-// ajax gọi phương thức post
+// ajax gọi phương thức post/put
 CommonFn.PostPutAjax = function(type, url, param, fnCallBack, async = true){
     var authorization = localStorage.getItem("Authorization");
 
