@@ -79,7 +79,6 @@ class Login {
 
         CommonFn.LoginAjax(param,function(response) {
             if(response.status == Enum.StatusResponse.Success){
-                debugger
                 localStorage.setItem("Authorization", response.data.token);
                 localStorage.setItem("UserName", param.Username);
                 localStorage.setItem("Password", param.Password);

@@ -48,6 +48,8 @@ class StudentRegister extends Grid {
             detail = studentRegisterDetail;
 
         me.cacheData = me.originData.filter(function(item){
+            item.Checked = false;
+            item.Disable = false;
             detail.cacheData.filter(function(itemDetail){
                 if(item.StartTime == itemDetail.StartTime && item.LocationId == itemDetail.LocationId && item.StudentSubjectId == itemDetail.StudentSubjectId){
                     item.Checked = true;

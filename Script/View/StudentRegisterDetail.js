@@ -29,6 +29,16 @@ class StudentRegisterDetail extends Grid {
             });
         }
     }
+
+    // Hàm xử lý xóa dòng trên grid
+    removeRowGrid(indexRow){
+        let me = this,
+            master = studentRegister;
+            
+        me.cacheData.splice(indexRow,1);
+        master.renderAgainTableData();
+        me.loadData(me.cacheData);
+    }
     
     // Custom dữ liệu trước khi binding
     customData(data){

@@ -57,13 +57,14 @@ class Grid{
 
     // Hàm dùng để load dữ liệu cho bảng
     loadData(data){
-        let grid = this;
+        let grid = this,
+            indexRow = 0;
         
         if(data){
             let body = $("<tbody></tbody>");
             
             data.forEach(record => {
-                body.append(grid.renderBody(record));
+                body.append(grid.renderBody(record, indexRow++));
             });
 
             this.grid.find("tbody").remove();
@@ -75,7 +76,7 @@ class Grid{
     }
 
     // Hàm dùng để render body của bảng
-    renderBody(data){
+    renderBody(data, indexRow){
         let grid = this,
             row = $("<tr></tr>");
 
@@ -113,6 +114,7 @@ class Grid{
         }
         // Set giá trị cho từng row
         row.data("value",data);
+        row.data("indexRow",indexRow);
 
         return row;
     }
@@ -197,7 +199,8 @@ class Grid{
 
         // Sự kiện khi click vào icon xóa
         me.grid.on("click","td .glyphicon-trash",function(){
-            $(this).parents("tr").remove();
+            let indexRow = $(this).parents("tr").data("indexRow");
+            me.removeRowGrid(indexRow);
         });
     }
 
@@ -206,4 +209,7 @@ class Grid{
 
     // Hàm xử lý khi chọn lịch thi
     submitRow(dataRow){}
+
+    // Hàm xử lý xóa dòng trên grid
+    removeRowGrid(indexRow){}
 }
