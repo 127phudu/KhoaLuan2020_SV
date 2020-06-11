@@ -13,10 +13,10 @@ class StudentRegister extends Grid {
     loadAjaxData(){
         let me = this,
             semesterId = parseInt(localStorage.getItem("SemesterId")),
-            url = mappingApi.Students.urlGetData.format(1),
+            url = mappingApi.Students.urlGetData.format(semesterId),
             urlFull = url + Constant.urlPaging.format(1000, 1);
 
-        if(url && semesterId){
+        if(url && semesterId != 0){
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
                     let data  = me.customData(response.data["Exams"]);
@@ -46,24 +46,62 @@ class StudentRegister extends Grid {
     renderAgainTableData(){
         let me = this,
             detail = studentRegisterDetail;
-
+        
         me.cacheData = me.originData.filter(function(item){
             item.Checked = false;
             item.Disable = false;
+            
             detail.cacheData.filter(function(itemDetail){
-                if(item.StartTime == itemDetail.StartTime && item.LocationId == itemDetail.LocationId && item.StudentSubjectId == itemDetail.StudentSubjectId){
+                // Kiểm tra đã được chọn chưa
+                if(item.StartTime == itemDetail.StartTime && item.LocationId == itemDetail.LocationId && item.SubjectSemesterId == itemDetail.SubjectSemesterId){
                     item.Checked = true;
                 }
-
-                if(item.StudentSubjectId == itemDetail.StudentSubjectId && (item.StartTime != itemDetail.StartTime || item.LocationId != itemDetail.LocationId)){
+                // Kiểm tra có bị trùng môn không
+                if(item.SubjectSemesterId == itemDetail.SubjectSemesterId && (item.StartTime != itemDetail.StartTime || item.LocationId != itemDetail.LocationId)){
                     item.Disable = true;
                 }
             });
+
+            // Kiểm tra có bị trùng thời gian không
+            if(!me.validateTimeRange(detail.cacheData, item)){
+                item.Disable = true;
+            }
 
             return item;
         });
 
         me.loadData(me.cacheData);
+    }
+
+    // Validate list time
+    validateTimeRange(listData, itemData){
+        let me = this,
+            isValid = true,
+            check = true;
+
+            listData.filter(function(item){
+                check = me.checkValidTwoDateRange(item, itemData);
+
+                if(check == false){
+                    isValid = false;
+                }
+            });
+
+        return isValid;
+    }
+
+    // Kiểm tra hai khoảng thời gian xem có bị giao nhau không
+    checkValidTwoDateRange(Range1, Range2){
+        let start1 = convertDate(Range1.StartTime),
+            end1 = convertDate(Range1.EndTime),
+            start2 = convertDate(Range2.StartTime),
+            end2 = convertDate(Range2.EndTime);
+
+        if(start1 > end2 || end1 < start2){
+            return true;
+        }
+
+        return false;
     }
 
     // Hàm xử lý khi chọn học phần

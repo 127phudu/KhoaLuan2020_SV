@@ -22,6 +22,32 @@ String.prototype.format = function() {
     });
 };
 
+// Hàm dùng để chuyển một chuỗi Date dạng dd/MM/yyyy sang Date object
+function convertDate(dateStr){
+    let day = dateStr.substr(0,2),
+        month = dateStr.substr(3,2),
+        year = dateStr.substr(6,4),
+        time = dateStr.substr(10,6),
+        newDateStr = year + '-' + month + '-' + day + time;
+
+    return new Date(newDateStr);
+}
+
+// Parse dữ liệu từ chuỗi sang số
+function TryParseInt(str, defaultValue) {
+    var retValue = defaultValue;
+
+    if(str !== null) {
+        if(str.length > 0) {
+            if (!isNaN(str)) {
+                retValue = parseInt(str);
+            }
+        }
+    }
+
+    return retValue > 0 ? retValue : defaultValue;
+}
+
 var CommonFn = CommonFn || {};
 
 // Hàm dùng login
@@ -45,13 +71,14 @@ CommonFn.LoginAjax = function(param, fnCallBack){
 }
 
 // Ajax gọi phương thức get
-CommonFn.GetAjax = function(url, fnCallBack){
+CommonFn.GetAjax = function(url, fnCallBack, async = true){
     var authorization = localStorage.getItem("Authorization");
 
     if(authorization){
         $.ajax({
             url: url,
             type: "GET",
+            async: async,
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": authorization

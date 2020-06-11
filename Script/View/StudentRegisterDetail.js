@@ -7,16 +7,33 @@ class StudentRegisterDetail extends Grid {
 
         this.originData = null;
         this.cacheData = null;
+        this.getSemesterId();
+    }
+
+    // Lấy lên ID của kì thi active
+    getSemesterId(){
+        let me = this,
+            url = mappingApi.Students.urlGetSemesterId;
+
+        CommonFn.GetAjax(url, function (response) {
+            if(response.status == Enum.StatusResponse.Success){
+                if(response.data){
+                    localStorage.setItem("SemesterId", response.data.Id);
+                }else{
+                    localStorage.setItem("SemesterId", 0);
+                }
+            }
+        }, false);
     }
    
     //Hàm load dữ liệu
     loadAjaxData(){
         let me = this,
             semesterId = parseInt(localStorage.getItem("SemesterId")),
-            url = mappingApi.Students.urlGetDataResult.format(1),
+            url = mappingApi.Students.urlGetDataResult.format(semesterId),
             urlFull = url + Constant.urlPaging.format(1000, 1);
 
-        if(url && semesterId){
+        if(url && semesterId != 0){
             CommonFn.GetAjax(urlFull, function (response) {
                 if(response.status == Enum.StatusResponse.Success){
                     let data  = me.customData(response.data["RegisterResults"]);
