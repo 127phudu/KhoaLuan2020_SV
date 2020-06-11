@@ -29,6 +29,7 @@ class StudentRegister extends Grid {
         }
     }
 
+   
     // Custom dữ liệu trước khi binding
     customData(data){
         let me = this;
@@ -50,7 +51,7 @@ class StudentRegister extends Grid {
         me.cacheData = me.originData.filter(function(item){
             item.Checked = false;
             item.Disable = false;
-            
+
             detail.cacheData.filter(function(itemDetail){
                 // Kiểm tra đã được chọn chưa
                 if(item.StartTime == itemDetail.StartTime && item.LocationId == itemDetail.LocationId && item.SubjectSemesterId == itemDetail.SubjectSemesterId){
@@ -63,7 +64,7 @@ class StudentRegister extends Grid {
             });
 
             // Kiểm tra có bị trùng thời gian không
-            if(!me.validateTimeRange(detail.cacheData, item)){
+            if(!item.Checked && !me.validateTimeRange(detail.cacheData, item)){
                 item.Disable = true;
             }
 

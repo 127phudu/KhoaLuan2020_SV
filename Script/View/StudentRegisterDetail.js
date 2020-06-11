@@ -8,6 +8,80 @@ class StudentRegisterDetail extends Grid {
         this.originData = null;
         this.cacheData = null;
         this.getSemesterId();
+        this.initEventOther();
+    }
+    
+    // Khởi tạo sự kiện
+    initEventOther(){
+        let me = this;
+
+        $("#saveRegister").click(me.saveData.bind(this));
+    }
+
+    // Lưu kết quả đăng kí
+    saveData(){
+        let me = this,
+            semesterId = parseInt(localStorage.getItem("SemesterId")),
+            url = mappingApi.Students.urlRegister.format(semesterId),
+            dataSubmit = {
+                Register: me.getDataNotInArray(me.cacheData, me.originData, true),
+                Cancel: me.getDataNotInArray(me.originData, me.cacheData, false)
+            };
+
+            debugger
+
+            CommonFn.PostPutAjax("POST", url, dataSubmit, function(response) {
+                if(response.status == Enum.StatusResponse.Success){
+                    me.showMessageSuccess("Lưu kết quả thành công");
+                    me.loadAjaxData();
+                }
+            });
+    }
+
+    // Hiển thị thông báo cất thành công
+    showMessageSuccess(customMessage){
+        let message = customMessage || "Cất dữ liệu thành công!";
+
+        $("#success-alert strong").text(message);
+
+        $("#success-alert").fadeTo(2500, 800).slideUp(800, function(){
+            $("#success-alert").slideUp(800);
+        });
+    }
+
+
+    // Lấy các phần tử ở mảng from không tồn tại trong mảng to
+    getDataNotInArray(fromArr, toArr, isCreate){
+        let me = this,
+            arrResult = [];
+
+            fromArr.filter(function(item){
+                let check = false;
+
+                toArr.filter(function(itemSub){
+                    if(item.LocationId == itemSub.LocationId && item.SubjectSemesterId == itemSub.SubjectSemesterId && item.StartTime == itemSub.StartTime){
+                        check = true;
+                    }
+                });
+
+                if(!check){
+                    let obj = {
+                        LocationId: item.LocationId,
+                        SubjectSemesterId: item.SubjectSemesterId,
+                        StartTime: item.StartTime
+                    };
+
+                    if(!isCreate){
+                        obj = {
+                            SubjectSemesterId: item.SubjectSemesterId
+                        };
+                    }
+
+                    arrResult.push(obj);
+                }
+            });
+
+        return arrResult;
     }
 
     // Lấy lên ID của kì thi active

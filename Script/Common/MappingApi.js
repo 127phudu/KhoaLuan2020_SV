@@ -10,6 +10,7 @@ var mappingApi = {
         urlGetDataResult: "http://dkt.vnu.edu.vn:8080/student/student_subject_exam/registered/semester/{0}",      
         urlUpdate: "http://dkt.vnu.edu.vn:8080/student/",      
         urlDelete: "http://dkt.vnu.edu.vn:8080/student//list", 
+        urlRegister: "http://dkt.vnu.edu.vn:8080/student/student_subject_exam/register/semester/{0}",
         urlGetSemesterId: "http://dkt.vnu.edu.vn:8080/student/semester/active"
     }
 }
