@@ -5,9 +5,9 @@ class StudentRegisterDetail extends Grid {
     constructor(gridId) {
         super(gridId);
 
-        this.originData = null;
-        this.cacheData = null;
-        this.getSemesterId();
+        this.originData = null; // Dữ liệu ban đầu
+        this.cacheData = null; // Dữ liệu thay đổi theo người dùng
+        this.getSemesterId();  //
         this.initEventOther();
     }
     
@@ -27,8 +27,6 @@ class StudentRegisterDetail extends Grid {
                 Register: me.getDataNotInArray(me.cacheData, me.originData, true),
                 Cancel: me.getDataNotInArray(me.originData, me.cacheData, false)
             };
-
-            debugger
 
             CommonFn.PostPutAjax("POST", url, dataSubmit, function(response) {
                 if(response.status == Enum.StatusResponse.Success){

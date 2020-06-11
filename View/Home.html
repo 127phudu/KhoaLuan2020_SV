@@ -83,7 +83,7 @@
     </div>
 
     <!-- Form đổi mật khẩu -->
-    <div class="wrapper-form formChanePassword">
+    <div class="wrapper-form">
         <div class="formDialog" id="formChangePassword">
             <!-- Header form -->
             <div class="header-form">
@@ -96,21 +96,21 @@
                         <div class="row-grid">
                             <div class="text-field flex1">
                                 <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
-                                <input type="password" Require="true" SetField="CurrentPassword" MaxLength="100"
+                                <input type="password" Require="true" SetField="Password" MaxLength="100"
                                     title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-top-none">
                                 <b>Mật khẩu mới <span class="require">(*)</span></b>
-                                <input type="password" Require="true" SetField="NewPassword" MaxLength="100"
+                                <input type="password" Require="true" SetField="PasswordNew" MaxLength="100"
                                     title="Không được để trống" placeholder="Nhập mật khẩu mới...">
                             </div>
                         </div>
                         <div class="row-grid">
                             <div class="text-field flex1 border-top-none">
                                 <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
-                                <input type="password" Require="true" SetField="ConfirmPassWord" MaxLength="100"
+                                <input type="password" Require="true" SetField="PasswordConfirm" MaxLength="100"
                                     title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
                             </div>
                         </div>
@@ -151,4 +151,5 @@
     <script src="../Script/Common/Master.js"></script>
     <script src="../Script/View/Home.js"></script>
 </body>
+
 </html>
