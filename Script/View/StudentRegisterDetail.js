@@ -7,7 +7,6 @@ class StudentRegisterDetail extends Grid {
 
         this.originData = null; // Dữ liệu ban đầu
         this.cacheData = null; // Dữ liệu thay đổi theo người dùng
-        this.getSemesterId();  //
         this.initEventOther();
     }
     
@@ -82,21 +81,6 @@ class StudentRegisterDetail extends Grid {
         return arrResult;
     }
 
-    // Lấy lên ID của kì thi active
-    getSemesterId(){
-        let me = this,
-            url = mappingApi.Students.urlGetSemesterId;
-
-        CommonFn.GetAjax(url, function (response) {
-            if(response.status == Enum.StatusResponse.Success){
-                if(response.data){
-                    localStorage.setItem("SemesterId", response.data.Id);
-                }else{
-                    localStorage.setItem("SemesterId", 0);
-                }
-            }
-        }, false);
-    }
    
     //Hàm load dữ liệu
     loadAjaxData(){

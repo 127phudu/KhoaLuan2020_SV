@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
-    <link rel="stylesheet" href="../Content/CSS/View/StudentRegister.css">
+    <link rel="stylesheet" href="../Content/CSS/View/RegisterResult.css">
 </head>
 
 <body>
@@ -70,24 +70,24 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Đăng ký thi</li>
+                                <li class="breadcrumb-item active" aria-current="page">Kết quả đăng kí</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="row header-title">
-                        <span class="float-left">KẾT QUẢ ĐĂNG KÝ THI</span>
+                        <span>KẾT QUẢ ĐĂNG KÝ THI</span>
                     </div>
 
                     <!-- Grid  -->
                     <div class="grid-wrapper grid-master">
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="Grid" id="GridStudentRegister" useCheckBox='true'>
+                                <div class="Grid" id="GridStudentRegisterResult" useIndex="true">
                                     <div class="column" setField="SubjectName">Tên học phần</div>
                                     <div class="column" setField="SubjectCode">Mã HP</div>
-                                    <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
                                     <div class="column" setField="Location">Khu vực</div>
-                                    <div class="column" setField="NumberOfStudent" dataType="Number">Số SV</div>
+                                    <div class="column" setField="RoomName">Phòng thi</div>
                                     <div class="column" setField="Date" dataType="DateTime">Ngày thi</div>
                                     <div class="column" setField="TimeExam">Giờ thi</div>
                                 </div>

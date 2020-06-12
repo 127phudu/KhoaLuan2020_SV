@@ -28,7 +28,6 @@ class StudentRegister extends Grid {
             });
         }
     }
-
    
     // Custom dữ liệu trước khi binding
     customData(data){

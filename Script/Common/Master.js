@@ -69,11 +69,20 @@ class Layout{
         }
     }
 
-    // Lấy ID của kì thi sinh viên đang thuộc
+    // Lấy lên ID của kì thi active
     getSemesterId(){
-        let me = this;
+        let me = this,
+            url = mappingApi.Students.urlGetSemesterId;
 
-        
+        CommonFn.GetAjax(url, function (response) {
+            if(response.status == Enum.StatusResponse.Success){
+                if(response.data){
+                    localStorage.setItem("SemesterId", response.data.Id);
+                }else{
+                    localStorage.setItem("SemesterId", 0);
+                }
+            }
+        }, false);
     }
 }
 
