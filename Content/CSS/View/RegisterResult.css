@@ -1,5 +1,9 @@
 *{}
 
+.tile-name-infor2 {
+    margin: 10px;
+}
+
 .tile-name-infor::after {
     content: "";
     clear: both;

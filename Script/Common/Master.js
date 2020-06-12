@@ -81,8 +81,21 @@ class Layout{
                 }else{
                     localStorage.setItem("SemesterId", 0);
                 }
+
+                me.setVisibleLayout(response.data);
             }
         }, false);
+    }
+
+    // Set ẩn hiện nếu chưa đến giờ đăng kí
+    setVisibleLayout(data){
+        if(data){
+            $(".layout1").show();
+            $(".layout2").hide();
+        }else{
+            $(".layout1").hide();
+            $(".layout2").show();
+        }
     }
 }
 
