@@ -82,6 +82,6 @@ span.glyphicon.glyphicon-trash {
 }
 
 .grid-master .rowNotEdit {
-    background: #aae8f0 !important;
+    background: #aae8f06b !important;
     pointer-events: none;
 }

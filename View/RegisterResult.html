@@ -74,26 +74,41 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="row header-title">
-                        <span>KẾT QUẢ ĐĂNG KÝ THI</span>
-                    </div>
 
-                    <!-- Grid  -->
-                    <div class="grid-wrapper grid-master">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="Grid" id="GridStudentRegisterResult" useIndex="true">
-                                    <div class="column" setField="SubjectName">Tên học phần</div>
-                                    <div class="column" setField="SubjectCode">Mã HP</div>
-                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
-                                    <div class="column" setField="Location">Khu vực</div>
-                                    <div class="column" setField="RoomName">Phòng thi</div>
-                                    <div class="column" setField="Date" dataType="DateTime">Ngày thi</div>
-                                    <div class="column" setField="TimeExam">Giờ thi</div>
+                    <div class="content-wrapper">
+                        <div class="row header-title">
+                            <span>KẾT QUẢ ĐĂNG KÝ THI</span>
+                        </div>
+
+                        <div class="tile-name-infor">
+                            <div class="fullname-infor">
+                                <span class="name">Nguyễn Tiến Xuân</span> -
+                                <span class="code">16020028</span>
+                            </div>
+                            <div class="btn-print">
+                                <span class="glyphicon glyphicon-print"></span>
+                                In kết quả
+                            </div>
+                        </div>
+    
+                        <!-- Grid  -->
+                        <div class="grid-wrapper grid-master">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="Grid" id="GridStudentRegisterResult" useIndex="true">
+                                        <div class="column" setField="SubjectName">Tên học phần</div>
+                                        <div class="column" setField="SubjectCode">Mã HP</div>
+                                        <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
+                                        <div class="column" setField="Location">Khu vực</div>
+                                        <div class="column" setField="RoomName">Phòng thi</div>
+                                        <div class="column" setField="Date" dataType="DateTime">Ngày thi</div>
+                                        <div class="column" setField="TimeExam">Giờ thi</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                   
                 </div>
                 <!-- end content -->
             </div>
@@ -158,6 +173,7 @@
     <script src="../Script/Library/jquery.min.js"></script>
     <script src="../Script/Library/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
     <script src="../Script/Library/jquery-ui.min.js"></script>
+    <script src="../Script/Library/jquery.print.js"></script>
 
     <!-- Script common -->
     <script src="../Script/Common/MappingApi.js"></script>

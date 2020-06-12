@@ -4,6 +4,22 @@ class RegisterResult extends Grid {
     // Hàm khởi tạo grid
     constructor(gridId) {
         super(gridId);
+
+        this.initEventOther();
+    }
+
+    // Khởi tạo một số sự kiện khác
+    initEventOther(){
+        let me = this;
+
+        $(".btn-print").click(me.printResult);
+    }
+
+    // In kết quả đăng kí thi
+    printResult(){
+        $(".content-wrapper").print({
+            noPrintSelector : ".btn-print"
+        });
     }
 
     //Hàm load dữ liệu

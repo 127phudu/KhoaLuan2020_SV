@@ -1,5 +1,49 @@
 *{}
 
+.tile-name-infor::after {
+    content: "";
+    clear: both;
+    display: table;
+    content: "";
+    margin: 8px;
+}
+
+.btn-print {
+    float: right;
+    margin-right: 10px;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    font-weight: 600;
+    background: #3276c3;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+}
+
+.fullname-infor {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 100%;
+    margin-left: 10px;
+    margin-top: 8px;
+    color: #2759a7;
+}
+
+table.table {
+    margin-bottom: 0;
+}
+
+div#SubjectContainer {
+    padding: 0 !important;
+}
+
+.content-wrapper {
+    height: calc(100% - 85px);
+    margin: 0 0px;
+    border: 1px solid #9d9b9b;
+}
+
 span#saveRegister {
     color: black;
     border: 1px solid #2759a7;
@@ -49,12 +93,20 @@ span#saveRegister {
     margin-bottom: 5px;
 }
 
+.grid-wrapper.grid-master {
+    margin: 0;
+    border-bottom: none;
+    margin-left: 10px;
+    height: auto;
+    margin-right: 10px;
+}
+
 .grid-detail{
     height: calc(50% - 164px);
 }
 
 .grid-wrapper {
-    border: 1px solid #9d9b9b;
+    border: 1px solid #dedede;
 }
 
 .table-responsive .table > thead > tr > th {
@@ -71,7 +123,8 @@ span#saveRegister {
     color: black;
     font-size: 30px;
     margin-top: 15px;
-    margin-bottom: 65px;
+    color: #2759a7;
+    margin-bottom: 50px;
 }
 
 .row.header-title span {
@@ -94,4 +147,11 @@ span.glyphicon.glyphicon-trash {
 .grid-master .rowNotEdit {
     background: #aae8f0 !important;
     pointer-events: none;
+}
+.row.breadrum {
+    position: relative;
+    left: 5px;
+    top: -10px;
+    width: 111%;
+    height: 37px;
 }
