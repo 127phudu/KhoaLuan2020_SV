@@ -6,6 +6,17 @@ class RegisterResult extends Grid {
         super(gridId);
 
         this.initEventOther();
+        this.showInfor();
+    }
+
+    // Hiển thị thông tin tên
+    showInfor(){
+        let me = this,
+            fullName = localStorage.getItem("FullName"),
+            code = localStorage.getItem("UserName");
+
+        $(".fullname-infor .name").text(fullName);
+        $(".fullname-infor .code").text(code);
     }
 
     // Khởi tạo một số sự kiện khác

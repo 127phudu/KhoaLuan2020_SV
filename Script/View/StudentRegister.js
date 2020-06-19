@@ -31,11 +31,19 @@ class StudentRegister extends Grid {
    
     // Custom dữ liệu trước khi binding
     customData(data){
-        let me = this;
+        let me = this,
+            arrDistinc = [];
 
         data = data.filter(function(item, index){
             item.TimeExam = item.StartTime.substr(11,5) + '-' + item.EndTime.substr(11,5);
             item.NumberOfStudent = item.NumberOfStudentSubscribe + "/" + item.NumberOfStudent;
+
+            if(!arrDistinc.includes(item.SubjectSemesterId)){
+                arrDistinc.push(item.SubjectSemesterId);
+                item.SubjectNameShow = item.SubjectName;
+                item.SubjectCodeShow = item.SubjectCode + " - " + item.NumberOfCredit;
+            }
+
             return item;
         });
 

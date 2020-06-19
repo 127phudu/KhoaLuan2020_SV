@@ -44,7 +44,7 @@ class Grid{
 
         // Kiểm tra xem có dùng checkbox không
         if(this.useCheckBox){
-            row.prepend("<th></th>");
+            row.find('th:eq(1)').after("<th></th>");
         }
         // Kiểm tra xem có dùng icon xóa không
         if(this.useDelete){
@@ -88,6 +88,11 @@ class Grid{
                 element = $("<td></td>").text(value);
 
             element = grid.addClassFormat(element, dataType);
+
+            if(setField == "SubjectNameShow" || setField == "SubjectCodeShow"){
+                element.addClass("backgound-white");
+            }
+
             row.append(element);
         });
 
@@ -98,10 +103,10 @@ class Grid{
         // Kiểm tra xem có dùng checkbox không
         if(this.useCheckBox){
             if(data.Checked){
-                row.prepend("<td><span class='checkbox checked'></span></td>");
+                row.find('td:eq(1)').after("<td class='text-align-right'><span class='checkbox checked'></span></td>");
                 row.addClass("row-focus");
             }else{
-                row.prepend("<td><span class='checkbox unchecked'></span></td>");
+                row.find('td:eq(1)').after("<td class='text-align-right'><span class='checkbox unchecked'></span></td>");
             }
         }
         // Nếu không được phép sửa
@@ -148,9 +153,6 @@ class Grid{
     // Hàm dùng để format dữ liệu
     addClassFormat(element, dataType){
         switch(dataType){
-            case 'Number':
-                element.addClass("text-align-right");
-                break;
             case 'DateTime':
                 element.addClass("text-align-center");
                 break;

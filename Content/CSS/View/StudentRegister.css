@@ -85,3 +85,7 @@ span.glyphicon.glyphicon-trash {
     background: #aae8f06b !important;
     pointer-events: none;
 }
+
+.backgound-white{
+    background: white !important;
+}
