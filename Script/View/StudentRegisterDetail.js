@@ -27,12 +27,56 @@ class StudentRegisterDetail extends Grid {
                 Cancel: me.getDataNotInArray(me.originData, me.cacheData, false)
             };
 
+            me.saveDataOnDifferentServers(dataSubmit, semesterId);
+            return;
             CommonFn.PostPutAjax("POST", url, dataSubmit, function(response) {
                 if(response.status == Enum.StatusResponse.Success){
                     me.showMessageSuccess("Lưu kết quả thành công");
                     me.loadAjaxData();
                 }
             });
+    }
+
+    saveDataOnDifferentServers(dataSubmit, semesterId) {
+        let me = this;
+        let promises = [];
+        dataSubmit.Register.forEach(function (subjectSemesterInfo) {
+            let p = new Promise(function (resolve) {
+                let dataSplit = {
+                    Register: [subjectSemesterInfo],
+                    Cancel: []
+                },
+                    url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister,
+                    fullUrl = url.format(semesterId);
+                CommonFn.PostPutAjax("POST", fullUrl, dataSplit, function(response) {
+                    if(response.status == Enum.StatusResponse.Success){
+                        resolve();
+                    }
+                });
+            })
+            promises.push(p);
+        })
+        dataSubmit.Cancel.forEach(function (subjectSemesterInfo) {
+            let p = new Promise(function (resolve) {
+                let dataSplit = {
+                        Register: [],
+                        Cancel: [subjectSemesterInfo]
+                    },
+                    url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister,
+                    fullUrl = url.format(semesterId);
+                CommonFn.PostPutAjax("POST", fullUrl, dataSplit, function(response) {
+                    if(response.status == Enum.StatusResponse.Success){
+                        resolve();
+                    }
+                });
+            })
+            promises.push(p);
+        })
+
+        Promise.all(promises).then(function () {
+            me.showMessageSuccess("Lưu kết quả thành công");
+            me.loadAjaxData();
+        })
     }
 
     // Hiển thị thông báo cất thành công

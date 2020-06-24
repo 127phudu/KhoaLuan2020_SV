@@ -12,6 +12,12 @@ var mappingApi = {
         urlUpdate: "http://dkt.vnu.edu.vn:8080/student/",      
         urlDelete: "http://dkt.vnu.edu.vn:8080/student//list", 
         urlRegister: "http://dkt.vnu.edu.vn:8080/student/student_subject_exam/register/semester/{0}",
-        urlGetSemesterId: "http://dkt.vnu.edu.vn:8080/student/semester/active"
-    }
+        urlGetSemesterId: "http://dkt.vnu.edu.vn:8080/student/semester/active",
+        pathToRegister: "/student/student_subject_exam/register/semester/{0}",
+        pathToGetSubjectSemesterId: "/student/exam/subjectSemester/{0}"
+    },
+    Mapping:{
+        urlGetMapping: "http://mapping.vnu.edu.vn:8882/mapping",
+        urlGetListSubjectsId: "http://mapping.vnu.edu.vn:8882/subjectSemester/getIds/student/{0}",
+    },
 }

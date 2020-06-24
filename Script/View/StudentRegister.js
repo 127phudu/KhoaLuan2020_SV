@@ -7,10 +7,42 @@ class StudentRegister extends Grid {
 
         this.originData = null;
         this.cacheData = null;
+        this.getMapping();
+        this.getListSubjectIds()
+    }
+
+    //hàm get mapping
+    getMapping(){
+        let me = this,
+            url = mappingApi.Mapping.urlGetMapping;
+        CommonFn.GetAjax(url, function (response) {
+            me.mapping = {};
+            if(response.status == Enum.StatusResponse.Success){
+                response.data.forEach(function (map) {
+                    me.mapping[map.subjectSemesterId] = map.handleServer;
+                })
+            }
+        });
+    }
+
+
+    //hàm get ListSubjectIds
+    getListSubjectIds(){
+        let me = this,
+            userId = parseInt(localStorage.getItem("UserId")),
+            url = mappingApi.Mapping.urlGetListSubjectsId.format(userId);
+        CommonFn.GetAjax(url, function (response) {
+            if(response.status == Enum.StatusResponse.Success){
+                me.listSubjectSemesterIds = response.data;
+            }
+        });
     }
 
     //Hàm load dữ liệu
     loadAjaxData(){
+        this.loadAjaxDataOnDifferentServers();
+        return
+
         let me = this,
             semesterId = parseInt(localStorage.getItem("SemesterId")),
             url = mappingApi.Students.urlGetData.format(semesterId),
@@ -27,6 +59,33 @@ class StudentRegister extends Grid {
                 }
             });
         }
+    }
+
+    loadAjaxDataOnDifferentServers() {
+        let me = this;
+        me.waitForMapping(function () {
+            let promises = [];
+            let exams = []
+            me.listSubjectSemesterIds.forEach(function (subjectSemesterId) {
+                let p = new Promise(function (resolve) {
+                    let url = me.mapping[subjectSemesterId] + mappingApi.Students.pathToGetSubjectSemesterId;
+                    let fullUrl = url.format(subjectSemesterId);
+                    CommonFn.GetAjax(fullUrl, function (response) {
+                        if(response.status == Enum.StatusResponse.Success){
+                            resolve(response.data);
+                        }
+                    });
+                })
+                promises.push(p);
+            })
+            Promise.all(promises).then(listArrayExam => {
+                exams = exams.concat(...listArrayExam)
+                let data  = me.customData(exams);
+                me.originData = JSON.parse(JSON.stringify(data));
+                me.cacheData =JSON.parse(JSON.stringify(data));
+                me.renderAgainTableData();
+            })
+        });
     }
    
     // Custom dữ liệu trước khi binding
@@ -130,6 +189,18 @@ class StudentRegister extends Grid {
         };
 
         return object;
+    }
+
+    //check xem đã lấy mapping xong chưa
+    waitForMapping(callback) {
+        let me = this;
+        if(!(me.mapping && me.listSubjectSemesterIds)) {
+            setTimeout(function () {
+                me.waitForMapping(callback);
+            })
+        } else {
+            callback();
+        }
     }
 }
 

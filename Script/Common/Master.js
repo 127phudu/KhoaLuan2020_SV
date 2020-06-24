@@ -84,7 +84,7 @@ class Layout{
 
                 me.setVisibleLayout(response.data);
             }
-        }, false);
+        });
     }
 
     // Set ẩn hiện nếu chưa đến giờ đăng kí
