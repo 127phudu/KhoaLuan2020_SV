@@ -132,11 +132,11 @@ var Constant = Constant || {};
 
 // Các url để chuyển hướng
 Constant.url = {
-    Login: "file:///D:/KhoaLuan2020_SV/Index.html",
+    Login: "http://localhost/KhoaLuan2020_SV/Index.html",
 
-    StudentRegister: "file:///D:/KhoaLuan2020_SV/View/StudentRegister.html",
-    RegisterResult: "file:///D:/KhoaLuan2020_SV/View/RegisterResult.html",
-    Home: "file:///D:/KhoaLuan2020_SV/View/Home.html"
+    StudentRegister: "http://localhost/KhoaLuan2020_SV/View/StudentRegister.html",
+    RegisterResult: "http://localhost/KhoaLuan2020_SV/View/RegisterResult.html",
+    Home: "http://localhost/KhoaLuan2020_SV/View/Home.html"
 }
 
 // pagin phân trang
