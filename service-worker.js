@@ -28,6 +28,7 @@ const PRECACHE_URLS = [
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
+    CreateIDB();
     event.waitUntil(
         caches.open(PRECACHE)
             .then(cache => cache.addAll(PRECACHE_URLS))
@@ -47,13 +48,19 @@ self.addEventListener('activate', event => {
             }));
         }).then(() => self.clients.claim())
     );
+    SetIBDConnect();
 });
-
+var idb;
 // If no response is found, it populates the runtime cache with the response
 // from the network before returning it to the page.
 self.addEventListener('fetch', event => {
-    
+    if(typeof listAPIServer == "undefined") {
+        SetIBDConnect();
+    }
+    AddRequestLog("TotalRequest", event.request.clone().url)
+
     if (event.request.mode === 'navigate') {
+        AddRequestLog("CacheHitRequest", event.request.clone().url)
         event.respondWith(caches.match(event.request.url));
     }
     let cacheFlag = false;
@@ -67,6 +74,7 @@ self.addEventListener('fetch', event => {
         event.respondWith(
             caches.match(event.request).then(cachedResponse => {
                 if (cachedResponse) {
+                    AddRequestLog("CacheHitRequest", event.request.clone().url)
                     return cachedResponse;
                 }
                 return caches.open(RUNTIME).then(cache => {
@@ -81,3 +89,40 @@ self.addEventListener('fetch', event => {
         );
     }
 });
+
+
+function CreateIDB() {
+    if (!('indexedDB' in self)) {
+        console.log('This browser doesn\'t support IndexedDB');
+    } else {
+        let request = self.indexedDB.open("MyDatabase", 1);
+
+        request.onupgradeneeded = function(event) {
+            db = event.target.result;
+
+            db.createObjectStore("TotalRequest", { autoIncrement : true });
+            db.createObjectStore("CacheHitRequest", { autoIncrement : true });
+        };
+    }
+}
+
+function AddRequestLog(objectName, url) {
+    let transaction = idb.transaction([objectName], "readwrite");
+    let objectStore = transaction.objectStore(objectName);
+    let request = objectStore.add(url);
+    request.onerror = function(event) {
+        console.log("error with " + objectName + "  " + url)
+    };
+}
+
+function SetIBDConnect() {
+    if (!('indexedDB' in self)) {
+        console.log('This browser doesn\'t support IndexedDB');
+    } else {
+        let request = self.indexedDB.open("MyDatabase", 1);
+        request.onsuccess = function(event) {
+            idb = event.target.result;
+        };
+    }
+
+}
