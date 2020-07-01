@@ -90,6 +90,7 @@ class Login {
                 localStorage.setItem("Password", param.Password);
                 localStorage.setItem("FullName", parseJwt(response.data.token).fullName);
                 localStorage.setItem("Role", parseJwt(response.data.token).role);
+                localStorage.setItem("UserId", parseJwt(response.data.token).id);
                
                 window.location.replace(Constant.url["Home"]);
             }else{
