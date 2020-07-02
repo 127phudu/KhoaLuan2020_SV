@@ -4,6 +4,7 @@ var mappingApi = {
     Master:{
         urlLogin: "http://dkt.vnu.edu.vn:8080/api/auth/login",    
         urlChangePassword: "http://admin.dkt.vnu.edu.vn:8080/api/auth/change_password",
+        urlFogotPassword:"http://admin.dkt.vnu.edu.vn:8080/api/auth/forgot_password"
     },
     Students:{ // Sinh viên
         urlGetData: "http://dkt.vnu.edu.vn:8080/student/exam/all/semester/{0}", 

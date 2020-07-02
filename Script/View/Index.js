@@ -28,6 +28,12 @@ class Login {
         $("input").focus(this.inputFocus);
         // Xử lý khi bấm đăng nhập
         $(".btn-submit").click(this.login.bind(this));
+        // Xử lý khi quên mật khẩu
+        $(".forgot-password").click(this.fogotPassWord.bind(this));
+        // Xử lý đóng form
+        $(".btn-cancel").click(this.cancelForm.bind(this));
+        // Xử lý lưu form quên mật khẩu
+        $(".btn-save").click(this.saveFormFogotPassWord.bind(this));
     }
 
     // Hàm login
@@ -148,6 +154,61 @@ class Login {
                 this.wrapPassWordField.addClass("border-red");
                 this.usernameField.focus();
                 this.error.html(Enum.TypeErrorMessage[Enum.TypeError.RequireUserName] + "<br>" + Enum.TypeErrorMessage[Enum.TypeError.RequirePassWord]);
+        }
+    }
+
+    // Xử lý khi quên mật khẩu
+    fogotPassWord(){
+        $(".wrapper-form").show();
+        $("#formFogotPassword input").focus();
+        $("#formFogotPassword input").parent().removeClass("error-validate");
+    }
+
+    // Xử lý đóng form
+    cancelForm(){
+        $(".wrapper-form").hide();
+    }
+
+    // Hiển thị thông báo cất thành công
+    showMessageSuccess(customMessage){
+        let message = customMessage || "Cất dữ liệu thành công!";
+
+        $("#success-alert strong").text(message);
+
+        $("#success-alert").fadeTo(2500, 800).slideUp(800, function(){
+            $("#success-alert").slideUp(800);
+        });
+    }
+
+    // Xử lý lưu form quên mật khẩu
+    saveFormFogotPassWord(){
+        let me = $("#formFogotPassword input"),
+            value = $("#formFogotPassword input").val();
+
+        if(value){
+            let url = mappingApi.Master.urlFogotPassword;
+
+            let param = {
+                Email: value
+            };
+
+            $.ajax({
+                url: url,
+                data: JSON.stringify(param),
+                type: "POST",
+                crossDomain: true,
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                   
+                },
+                error: function (errormessage) {
+                    console.log(errormessage.responseText);
+                }
+            });
+        }else{
+            me.parent().addClass("error-validate");
+            me.attr("title", "Dữ liệu không được để trống!");
         }
     }
 }

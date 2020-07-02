@@ -193,3 +193,13 @@ span.icon-user, span.icon-lock {
         text-align: center;
     }
 }
+
+.formDialog{
+    height: 400px;
+    margin: 200px auto;
+    width: 400px;
+}
+.body-form{
+    height: 73px;
+    background: white;
+}
