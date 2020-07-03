@@ -68,7 +68,12 @@ class StudentRegister extends Grid {
             let exams = []
             me.listSubjectSemesterIds.forEach(function (subjectSemesterId) {
                 let p = new Promise(function (resolve) {
-                    let url = me.mapping[subjectSemesterId] + mappingApi.Students.pathToGetSubjectSemesterId;
+                    let url;
+                    if (typeof me.mapping[subjectSemesterId] == "undefined") {
+                        url = mappingApi.Students.defaultServer + mappingApi.Students.pathToGetSubjectSemesterId;
+                    } else {
+                        url = me.mapping[subjectSemesterId] + mappingApi.Students.pathToGetSubjectSemesterId;
+                    }
                     let fullUrl = url.format(subjectSemesterId);
                     CommonFn.GetAjax(fullUrl, function (response) {
                         if(response.status == Enum.StatusResponse.Success){

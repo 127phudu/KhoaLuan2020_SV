@@ -30,17 +30,19 @@ const PRECACHE_URLS = [
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
-    fetch('http://mapping.vnu.edu.vn:8882/server/list')
-        .then(response => response.json())
-        .then(data => {
-            let list = [];
-            if (data.status == "200") {
-                data.data.forEach(function (server) {
-                    list.push(server.address);
-                })
-            }
-            SaveAPIServerList(list)
-        });
+    event.waitUntil(
+        fetch('http://mapping.vnu.edu.vn:8882/server/list')
+            .then(response => response.json())
+            .then(data => {
+                let list = [];
+                if (data.status == "200") {
+                    data.data.forEach(function (server) {
+                        list.push(server.address);
+                    })
+                }
+                SaveAPIServerList(list)
+            })
+    )
     event.waitUntil(
         caches.open(PRECACHE)
             .then(cache => cache.addAll(PRECACHE_URLS))
@@ -99,84 +101,93 @@ self.addEventListener('fetch', event => {
             })
         );
     } else {
-        if (event.request.url.startsWith(DEFAULT_APISERVER)) {
-            let promiseRes;
-            if (event.request.method == "GET" || event.request.method == "HEAD") {
-                promiseRes = new Promise(function (resolve) {
-                    let initNewReq = {
-                        method: event.request.method,
-                        headers: event.request.headers,
-                        mode: event.request.mode,
-                        credentials: event.request.credentials,
-                        cache: event.request.cache,
-                        redirect: event.request.redirect,
-                        referrer: event.request.referrer,
-                        integrity: event.request.integrity
-                    };
-                    let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
-                    let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
-                    let newReq = new Request(newUrl, initNewReq);
+        if(typeof listAPIServer != "undefined" && listAPIServer.length > 0) {
+            if (event.request.url.startsWith(DEFAULT_APISERVER)) {
+                let promiseRes;
+                if (event.request.method == "GET" || event.request.method == "HEAD") {
+                    promiseRes = new Promise(function (resolve) {
+                        let initNewReq = {
+                            method: event.request.method,
+                            headers: event.request.headers,
+                            mode: event.request.mode,
+                            credentials: event.request.credentials,
+                            cache: event.request.cache,
+                            redirect: event.request.redirect,
+                            referrer: event.request.referrer,
+                            integrity: event.request.integrity
+                        };
+                        let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
+                        let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
+                        let newReq = new Request(newUrl, initNewReq);
 
-                    fetch(newReq)
-                        .then(response => {
-                            resolve(response);
-                        })
-                })
-            } else {
-                promiseRes = new Promise(function (resolve) {
-                    let body;
-                    event.request.clone().json()
-                        .then(function(jsonData) {
-                            body = jsonData;
-                            let initNewReq = {
-                                method: event.request.method,
-                                headers: event.request.headers,
-                                body: JSON.stringify(body),
-                                mode: event.request.mode,
-                                credentials: event.request.credentials,
-                                cache: event.request.cache,
-                                redirect: event.request.redirect,
-                                referrer: event.request.referrer,
-                                integrity: event.request.integrity
-                            };
-                            let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
-                            let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
-                            let newReq = new Request(newUrl, initNewReq);
+                        fetch(newReq)
+                            .then(response => {
+                                resolve(response);
+                            })
+                    })
+                } else {
+                    promiseRes = new Promise(function (resolve) {
+                        let body;
+                        event.request.clone().json()
+                            .then(function(jsonData) {
+                                body = jsonData;
+                                let initNewReq = {
+                                    method: event.request.method,
+                                    headers: event.request.headers,
+                                    body: JSON.stringify(body),
+                                    mode: event.request.mode,
+                                    credentials: event.request.credentials,
+                                    cache: event.request.cache,
+                                    redirect: event.request.redirect,
+                                    referrer: event.request.referrer,
+                                    integrity: event.request.integrity
+                                };
+                                let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
+                                let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
+                                let newReq = new Request(newUrl, initNewReq);
 
-                            fetch(newReq)
-                                .then(response => {
-                                    resolve(response);
-                                })
+                                fetch(newReq)
+                                    .then(response => {
+                                        resolve(response);
+                                    })
 
-                        });
-                })
+                            });
+                    })
+                }
+
+                event.respondWith(promiseRes)
             }
-
-            event.respondWith(promiseRes)
         }
+
     }
 });
 
 function SaveAPIServerList(APIServerList) {
-    if (!('indexedDB' in self)) {
-        console.log('This browser doesn\'t support IndexedDB');
-    } else {
-        let request = self.indexedDB.open("MyDatabase", 1);
+    return new Promise(function (resolve) {
+        if (!('indexedDB' in self)) {
+            console.log('This browser doesn\'t support IndexedDB');
+            resolve();
+        } else {
+            let request = self.indexedDB.open("MyDatabase", 1);
 
-        request.onupgradeneeded = function(event) {
-            db = event.target.result;
+            request.onupgradeneeded = function(event) {
+                db = event.target.result;
 
-            let objectStore = db.createObjectStore("APIServerList", { autoIncrement : true });
+                let objectStore = db.createObjectStore("APIServerList", { autoIncrement : true });
 
-            APIServerList.forEach(function(address) {
-                objectStore.add(address);
-            });
-        };
-    }
+                objectStore.transaction.oncomplete = function(event) {
+                    resolve();
+                };
+
+                APIServerList.forEach(function(address) {
+                    objectStore.add(address);
+                });
+            };
+        }
+    })
 }
 
 function SetListAPIserver() {
-    console.log("SetListAPIserver");
     if (!('indexedDB' in self)) {
         console.log('This browser doesn\'t support IndexedDB');
     } else {

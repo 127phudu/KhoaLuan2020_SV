@@ -45,9 +45,14 @@ class StudentRegisterDetail extends Grid {
                 let dataSplit = {
                     Register: [subjectSemesterInfo],
                     Cancel: []
-                },
-                    url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister,
-                    fullUrl = url.format(semesterId);
+                };
+                let url;
+                if (typeof studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] == "undefined") {
+                    url = mappingApi.Students.defaultServer + mappingApi.Students.pathToRegister
+                } else {
+                    url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister
+                }
+                let fullUrl = url.format(semesterId);
                 CommonFn.PostPutAjax("POST", fullUrl, dataSplit, function(response) {
                     if(response.status == Enum.StatusResponse.Success){
                         resolve();

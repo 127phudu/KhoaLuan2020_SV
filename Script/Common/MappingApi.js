@@ -14,7 +14,8 @@ var mappingApi = {
         urlRegister: "http://dkt.vnu.edu.vn:8080/student/student_subject_exam/register/semester/{0}",
         urlGetSemesterId: "http://dkt.vnu.edu.vn:8080/student/semester/active",
         pathToRegister: "/student/student_subject_exam/register/semester/{0}",
-        pathToGetSubjectSemesterId: "/student/exam/subjectSemester/{0}"
+        pathToGetSubjectSemesterId: "/student/exam/subjectSemester/{0}",
+        defaultServer: "http://dkt.vnu.edu.vn:8080"
     },
     Mapping:{
         urlGetMapping: "http://mapping.vnu.edu.vn:8882/mapping",
