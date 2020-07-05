@@ -38,10 +38,8 @@ class StudentRegisterDetail extends Grid {
     }
 
     saveDataOnDifferentServers(dataSubmit, semesterId) {
-        debugger
         let me = this;
         let promises = [];
-        console.log(mappingApi.Students.defaultServer)
         dataSubmit.Register.forEach(function (subjectSemesterInfo) {
             let p = new Promise(function (resolve) {
                 let dataSplit = {
@@ -54,7 +52,6 @@ class StudentRegisterDetail extends Grid {
                 } else {
                     url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister
                 }
-                console.log(url);
                 let fullUrl = url.format(semesterId);
                 CommonFn.PostPutAjax("POST", fullUrl, dataSplit, function(response) {
                     if(response.status == Enum.StatusResponse.Success){
