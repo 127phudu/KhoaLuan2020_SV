@@ -1,6 +1,10 @@
 const PRECACHE = 'precache-v1';
 const RUNTIME = 'runtime';
 const DEFAULT_APISERVER = "http://dkt.vnu.edu.vn:8080";
+const PATH_TO_FIXED_SERVERS = [
+    "/student/exam/subjectSemester/",
+    "/student/student_subject_exam/register/semester/"
+]
 
 const URLSTOCACHE = [
     "http://localhost/KhoaLuan2020_SV/Content/",
@@ -101,64 +105,64 @@ self.addEventListener('fetch', event => {
             })
         );
     } else {
-        if(typeof listAPIServer != "undefined" && listAPIServer.length > 0) {
-            if (event.request.url.startsWith(DEFAULT_APISERVER)) {
-                let promiseRes;
-                if (event.request.method == "GET" || event.request.method == "HEAD") {
-                    promiseRes = new Promise(function (resolve) {
-                        let initNewReq = {
-                            method: event.request.method,
-                            headers: event.request.headers,
-                            mode: event.request.mode,
-                            credentials: event.request.credentials,
-                            cache: event.request.cache,
-                            redirect: event.request.redirect,
-                            referrer: event.request.referrer,
-                            integrity: event.request.integrity
-                        };
-                        let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
-                        let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
-                        let newReq = new Request(newUrl, initNewReq);
+        if (!CheckUrlToFixedServer(event.request.url)) {
+            if(typeof listAPIServer != "undefined" && listAPIServer.length > 0) {
+                if (event.request.url.startsWith(DEFAULT_APISERVER)) {
+                    let promiseRes;
+                    if (event.request.method == "GET" || event.request.method == "HEAD") {
+                        promiseRes = new Promise(function (resolve) {
+                            let initNewReq = {
+                                method: event.request.method,
+                                headers: event.request.headers,
+                                mode: event.request.mode,
+                                credentials: event.request.credentials,
+                                cache: event.request.cache,
+                                redirect: event.request.redirect,
+                                referrer: event.request.referrer,
+                                integrity: event.request.integrity
+                            };
+                            let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
+                            let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
+                            let newReq = new Request(newUrl, initNewReq);
 
-                        fetch(newReq)
-                            .then(response => {
-                                resolve(response);
-                            })
-                    })
-                } else {
-                    promiseRes = new Promise(function (resolve) {
-                        let body;
-                        event.request.clone().json()
-                            .then(function(jsonData) {
-                                body = jsonData;
-                                let initNewReq = {
-                                    method: event.request.method,
-                                    headers: event.request.headers,
-                                    body: JSON.stringify(body),
-                                    mode: event.request.mode,
-                                    credentials: event.request.credentials,
-                                    cache: event.request.cache,
-                                    redirect: event.request.redirect,
-                                    referrer: event.request.referrer,
-                                    integrity: event.request.integrity
-                                };
-                                let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
-                                let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
-                                let newReq = new Request(newUrl, initNewReq);
+                            fetch(newReq)
+                                .then(response => {
+                                    resolve(response);
+                                })
+                        })
+                    } else {
+                        promiseRes = new Promise(function (resolve) {
+                            let body;
+                            event.request.clone().json()
+                                .then(function(jsonData) {
+                                    body = jsonData;
+                                    let initNewReq = {
+                                        method: event.request.method,
+                                        headers: event.request.headers,
+                                        body: JSON.stringify(body),
+                                        mode: event.request.mode,
+                                        credentials: event.request.credentials,
+                                        cache: event.request.cache,
+                                        redirect: event.request.redirect,
+                                        referrer: event.request.referrer,
+                                        integrity: event.request.integrity
+                                    };
+                                    let randomAPI = listAPIServer[Math.floor(Math.random() * listAPIServer.length)];
+                                    let newUrl = event.request.url.replace(DEFAULT_APISERVER, randomAPI)
+                                    let newReq = new Request(newUrl, initNewReq);
 
-                                fetch(newReq)
-                                    .then(response => {
-                                        resolve(response);
-                                    })
+                                    fetch(newReq)
+                                        .then(response => {
+                                            resolve(response);
+                                        })
 
-                            });
-                    })
+                                });
+                        })
+                    }
+                    event.respondWith(promiseRes)
                 }
-
-                event.respondWith(promiseRes)
             }
         }
-
     }
 });
 
@@ -206,5 +210,15 @@ function SetListAPIserver() {
 
 
     }
+}
 
+function CheckUrlToFixedServer(url) {
+    let result = false;
+    PATH_TO_FIXED_SERVERS.forEach(function (path) {
+        if (url.indexOf(path) !== -1) {
+            result = true;
+            console.log(url);
+        }
+    })
+    return result;
 }
