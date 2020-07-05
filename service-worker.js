@@ -217,7 +217,6 @@ function CheckUrlToFixedServer(url) {
     PATH_TO_FIXED_SERVERS.forEach(function (path) {
         if (url.indexOf(path) !== -1) {
             result = true;
-            console.log(url);
         }
     })
     return result;
