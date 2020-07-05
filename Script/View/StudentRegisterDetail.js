@@ -38,8 +38,10 @@ class StudentRegisterDetail extends Grid {
     }
 
     saveDataOnDifferentServers(dataSubmit, semesterId) {
+        debugger
         let me = this;
         let promises = [];
+        console.log(mappingApi.Students.defaultServer)
         dataSubmit.Register.forEach(function (subjectSemesterInfo) {
             let p = new Promise(function (resolve) {
                 let dataSplit = {
@@ -52,6 +54,7 @@ class StudentRegisterDetail extends Grid {
                 } else {
                     url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister
                 }
+                console.log(url);
                 let fullUrl = url.format(semesterId);
                 CommonFn.PostPutAjax("POST", fullUrl, dataSplit, function(response) {
                     if(response.status == Enum.StatusResponse.Success){
@@ -66,9 +69,14 @@ class StudentRegisterDetail extends Grid {
                 let dataSplit = {
                         Register: [],
                         Cancel: [subjectSemesterInfo]
-                    },
-                    url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister,
-                    fullUrl = url.format(semesterId);
+                };
+                let url;
+                if (typeof studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] == "undefined") {
+                    url = mappingApi.Students.defaultServer + mappingApi.Students.pathToRegister;
+                } else {
+                    url = studentRegister.mapping[subjectSemesterInfo.SubjectSemesterId] + mappingApi.Students.pathToRegister;
+                }
+                let fullUrl = url.format(semesterId);
                 CommonFn.PostPutAjax("POST", fullUrl, dataSplit, function(response) {
                     if(response.status == Enum.StatusResponse.Success){
                         resolve();
